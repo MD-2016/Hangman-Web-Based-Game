@@ -1,0 +1,8 @@
+<% provide(:title, "About") %>
+<h1>About the Game</h1>
+<p>You've probably played hangman at some point: you are given the length of a word, and you have to guess the letters in the word. For each letter you guess, the words appear in their respective spots, or if the words do not appear, the man acquires a head, body, arm, or leg. Once the hang man is fully formed, the game is over.</p>
+<p>So what makes Evil Hangman so evil? In typical hangman, the word is chosen in advance and stays fixed. Evil Hangman makes is as hard as possible to win, by changing the word in every time, in order for the guessed letter to not be in the word. The computer keeps a list of every word in the English language (or, a set of words of fixed length) and selectively pares down the list in order to keep the user from guessing the "correct" word.</p>
+<p>Do you think you can thwart the evil computer and win the game? Do you want to land on the leaderboard and live a life of Evil Hangman glory? Try your hand!</p>
+<div class="center">
+	<%= link_to "Play the Game!", games_path, class: "btn btn-lg btn-primary center" %>
+</div>

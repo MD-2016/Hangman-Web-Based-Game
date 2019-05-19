@@ -1,0 +1,21 @@
+<% provide(:title, 'Choose Difficulty') %>
+<h1>Choose Difficulty</h1>
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@game) do |f| %>
+
+      <%= f.radio_button :difficulty, "Easy", :checked => true %><%= label :difficulty_easy, "Easy" %>
+	  
+      <%= f.radio_button :difficulty, "Medium" %><%= label :difficulty_medium, "Medium" %>
+	  
+      <%= f.radio_button :difficulty, "Hard" %><%= label :difficulty_hard, "Hard" %>
+	  
+      <%= f.submit "Play the game", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+
+

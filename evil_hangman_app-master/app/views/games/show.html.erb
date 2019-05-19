@@ -1,0 +1,63 @@
+<% provide(:title, "Game") %>
+<h1>Play the Game <%= @game.name %>!</h1>
+<p>Difficulty: <%= @game.difficulty %></p>
+<p id="UserId" hidden><%= @id %></p>
+
+<% length_of_word=0 %>
+<% if @game.difficulty == "Easy" %>
+  <% length_of_word = 4+rand(3) %>
+<% elsif @game.difficulty == "Medium" %>
+  <% length_of_word = 8+rand(3) %>
+<% else %>
+  <% length_of_word = 12+rand(3) %>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+	  <div class="row">
+	    <div class="col-xs-4">
+  		  <p id="Solved">Solved Words: <%= @game.words %></p>
+		  <p id="Deaths">Deaths: <%= @game.deaths %></p>
+		  <p id="Correct">Correct Quesses: <%= @game.correct_guesses %></p>
+		  <p id="Wrong">Wrong Quesses: <%= @game.wrong_guesses %></p>
+		</div>
+		<div class="col-xs-8">
+	      <img id="hangmanPic" src="/assets/hang1.PNG">
+		</div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-10">
+		  <% word_pattern = "-"*length_of_word %>
+		  <h1 id="guessWord"><%= word_pattern %></h1>
+		</div>
+	    <div class="col-xs-2">
+		</div>
+	  </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="btn-group btn-group-justified" role="group" aria-label="Letters">
+        <% count = 0 %>
+        <% ('A'..'Z').each do |letter| %>
+		  <div class="btn-group btn-group-lg" role="group" aria-label="Letters">
+            <%=hidden_field_tag(:guess, letter)%>
+            <button type="button" id=<%= letter %> class="btn btn-primary"><%=
+            letter %></button>	
+		  </div>
+          <% count+= 1 %>
+          <% if count == 4 %>
+            </div><div class="btn-group btn-group-justified" role="group" aria-label="Letters">
+            <% count=0 %>
+          <% end %>
+        <% end %>
+	    <div class="btn-group btn-group-lg" role="group" aria-label="Letters">
+          <button type="button" id="cry" class="btn btn-info">Cry</button>
+		</div>
+		<div class="btn-group btn-group-lg" role="group" aria-label="Letters">
+          <button type="button" id="quit" class="btn btn-info" onclick="window.location ='/'">Quit</button>
+		</div>
+	  </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,132 @@
+<% provide(:title, "Stats") %>
+<h1>Leaderboards and Statistics</h1>
+<br>
+
+<% easy=[] %>
+<% medium=[] %>
+<% hard=[] %>
+<% size = Game.count %>
+
+<% size.times do |i| %>
+  <% diff = Game.find(i+1).difficulty %>
+  <% if diff == "Easy" %>
+    <% easy.push(i+1) %>
+  <% elsif diff == "Medium" %>
+    <% medium.push(i+1) %>
+  <% else %>
+    <% hard.push(i+1) %>
+  <% end %>
+<% end %>
+
+<% easyH = {} %>
+<% size = easy.length %>
+
+<% size.times do |i| %>
+  <% temp = easy[i] %>
+  <% num = Game.find(temp).words %>
+  <% num = num.to_i %>
+  <% easyH[temp] = num %>
+<% end %>
+
+<% easyH = easyH.sort_by {|k,v| v}.to_h %>
+
+<h2>Easy</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Rank</th>
+	<th>Name</th>
+	<th>Number of Words Solved</th>
+  </tr>
+
+  <% key = easyH.keys.reverse %>
+  <% index = 1 %>
+  <% if easyH.length < 10 %>
+    <% size = easyH.length %>
+  <% else %>
+    <% size = 10 %>
+  <% end %>
+  <% size.times do |i| %>
+    <tr>
+	  <td><%= i+1 %></td>
+	  <td><%= Game.find(key[i]).name %></td>
+	  <td><%= Game.find(key[i]).words %></td>
+    </tr>
+  <% end %>
+</table>
+<br>
+
+
+<% mediumH = {} %>
+<% size = medium.length %>
+
+<% size.times do |i| %>
+  <% temp = medium[i] %>
+  <% num = Game.find(temp).words %>
+  <% num = num.to_i %>
+  <% mediumH[temp] = num %>
+<% end %>
+
+<% mediumH = mediumH.sort_by {|k,v| v}.to_h %>
+
+<h2>Medium</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Rank</th>
+	<th>Name</th>
+	<th>Number of Words Solved</th>
+  </tr>
+
+  <% key = mediumH.keys.reverse %>
+  <% index = 1 %>
+  <% if mediumH.length < 10 %>
+    <% size = mediumH.length %>
+  <% else %>
+    <% size = 10 %>
+  <% end %>
+  <% size.times do |i| %>
+    <tr>
+	  <td><%= i+1 %></td>
+	  <td><%= Game.find(key[i]).name %></td>
+	  <td><%= Game.find(key[i]).words %></td>
+    </tr>
+  <% end %>
+</table>
+<br>
+
+
+<% hardH = {} %>
+<% size = hard.length %>
+
+<% size.times do |i| %>
+  <% temp = hard[i] %>
+  <% num = Game.find(temp).words %>
+  <% num = num.to_i %>
+  <% hardH[temp] = num %>
+<% end %>
+
+<% hardH = hardH.sort_by {|k,v| v}.to_h %>
+
+<h2>Hard</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Rank</th>
+	<th>Name</th>
+	<th>Number of Words Solved</th>
+  </tr>
+
+  <% key = hardH.keys.reverse %>
+  <% index = 1 %>
+  <% if hardH.length < 10 %>
+    <% size = hardH.length %>
+  <% else %>
+    <% size = 10 %>
+  <% end %>
+  <% size.times do |i| %>
+    <tr>
+	  <td><%= i+1 %></td>
+	  <td><%= Game.find(key[i]).name %></td>
+	  <td><%= Game.find(key[i]).words %></td>
+    </tr>
+  <% end %>
+</table>
+
